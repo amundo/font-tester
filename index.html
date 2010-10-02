@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing fonts</title>
+  <meta charset=utf-8>
+  <script src=js/jquery.js></script>
+<style>
+div {
+  width: 40%; 
+  overflow:auto;
+  font-size: 110%;
+  line-height: 150%;
+  font-family: 'Times New Roman';
+  border: 1px solid black;
+  margin: 1em;
+  padding: 1em;
+}
+textarea {
+  width: 500px;
+  height: 100px;
+}
+</style>
+
+<script>
+
+$(document).ready(function(){
+
+  var text = $('textarea:first'), fonts = [];
+
+  fonts = ['Times New Roman', 'Aboriginal Sans', 'Lucida', 'Liberation Sans', 'Liberation Serif', 'Gentium']; 
+
+  function anotherDiv(font, css){
+    var $div = $('<div/>');
+    $div.css('fontFamily', font);
+    return $div.html( $('textarea:first').val() ).prepend($('<h3/>', {html: font}));
+  }
+
+  function render(){
+    $('body div').remove();
+    for (var i=0; i<fonts.length; i++){
+      $('body').append(anotherDiv(fonts[i]));
+    }
+  }
+ 
+  $('div:first').hide();
+  render();
+
+  $('button').click(render );
+
+})
+
+</script>
+
+</head>
+<body>
+
+<button>try</button>
+<textarea id=text>
+Your text here.
+</textarea>
+
+</body>
+
+</html>
+
